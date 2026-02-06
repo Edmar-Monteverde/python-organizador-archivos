@@ -1,0 +1,13 @@
+{
+  "python.formatting.provider": "black",
+  "python.defaultInterpreterPath": "C:\\Users\\edmar\\miniconda3\\envs\\work\\python.exe",
+  "python.formatting.blackArgs": ["--line-length", "88"],
+  "editor.formatOnSave": true,
+  "prettier.disableLanguages": ["python"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda",
+  "python-envs.pythonProjects": []
+}

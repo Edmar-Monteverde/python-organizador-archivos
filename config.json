@@ -1,0 +1,40 @@
+{
+  "lenguajes": {
+    "python": {
+      "nombre": "Python",
+      "extensiones": [".py", ".pyw", ".pyx"],
+      "descripcion": "Archivos de Python"
+    },
+    "javascript": {
+      "nombre": "JavaScript",
+      "extensiones": [".js", ".jsx", ".mjs"],
+      "descripcion": "Archivos de JavaScript"
+    },
+    "html": {
+      "nombre": "HTML",
+      "extensiones": [".html", ".htm"],
+      "descripcion": "Archivos de HTML"
+    },
+    "css": {
+      "nombre": "CSS",
+      "extensiones": [".css", ".scss", ".sass"],
+      "descripcion": "Archivos de CSS"
+    },
+    "json": {
+      "nombre": "JSON",
+      "extensiones": [".json"],
+      "descripcion": "Archivos de configuración JSON"
+    },
+    "otros": {
+      "nombre": "Otros",
+      "extensiones": [],
+      "descripcion": "Archivos sin clasificar"
+    }
+  },
+  "configuracion": {
+    "generar_reporte": true,
+    "formato_reporte": "csv",
+    "incluir_estadisticas": true,
+    "carpeta_salida": "output/"
+  }
+}
