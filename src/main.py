@@ -4,7 +4,9 @@ import csv
 from typing import List,Dict,Tuple
 from auditor import ArchivoInfo, escanear_archivos
 from collections import defaultdict
+from extensiones import resumen_por_extension
 from formatear_tamano import formatear_bytes
+from exportar import exportar_a_csv
 
 def leer_argumentos() -> argparse.Namespace:
 
@@ -41,23 +43,6 @@ def leer_argumentos() -> argparse.Namespace:
 
                        
 
-
-
-
-
-
-def exportar_a_csv(archivos: list[ArchivoInfo], ruta_salida: str = "output/reporte.csv") -> None:
-    ruta=Path(ruta_salida)
-    ruta.parent.mkdir(parents=True, exist_ok=True) ## Crea el directorio de salida si no existe
-
-    with ruta.open("w", newline="", encoding="utf-8") as file: ## Abre el archivo CSV para escritura
-        writer=csv.writer(file)
-        writer.writerow(["Nombre", "Extensión", "Tamaño ", "Ruta"]) ## Escribe la fila de encabezado
-
-        for a in archivos: ## Escribe cada objeto ArchivoInfo como una fila en el CSV
-            writer.writerow([a.nombre, a.extension, formatear_bytes(a.tamano_bytes), a.ruta])
-
- 
 def main() -> None:
 
     args=leer_argumentos()
@@ -68,8 +53,7 @@ def main() -> None:
     print(f"📄 Archivos encontrados: {len(archivos)}")
 
     print(f"\n--- MOSTRANDO {min(args.limite, len(archivos))} ---")
-    print(f"Archivos encontrados: {len(archivos)}")
-
+    
     for a in archivos[:args.limite]: ## Muestra en la consola los primeros archivos encontrados, limitados por el argumento --limite
     
         tam=formatear_bytes(a.tamano_bytes) if args.human else f"{a.tamano_bytes} bytes"  ## Si se especificó --human, cambiar  unidad, de lo contrario muestra el tamaño en bytes
@@ -81,19 +65,7 @@ def main() -> None:
             exportar_a_csv(archivos, args.output)
             print(f"Reporte exportado a {args.output}")
             
-    def resumen_por_extension(archivos: List[ArchivoInfo]) -> Dict[str, Tuple[int, int]]:
-        resumen : Dict[str, Tuple[int, int]]={}  # Diccionario para almacenar el resumen por extensión
-        acumulador = defaultdict(lambda: [0, 0])  # Acumulador para contar cantidad y tamaño por extensión
-
-        for a in archivos:  # Itera sobre cada archivo encontrado
-            ext=a.extension if a.extension else '(sin extensión)'  # Si no tiene extensión, se etiqueta como '(sin extensión)'
-            acumulador[ext][0] += 1  # Incrementa el conteo de archivos para esta extensión
-            acumulador[ext][1] += a.tamano_bytes  # Acumula el tamaño total de archivos para esta extensión
-
-        for ext,(cantidad, total_bytes) in acumulador.items():  # Itera sobre el acumulador para construir el resumen final
-                resumen[ext]=(cantidad, total_bytes)  # Almacena la cantidad y el tamaño total en el resumen
-
-        return resumen
+    
 
         
     print('\n--- RESUMEN POR EXTENSIÓN ---')
