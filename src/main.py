@@ -4,6 +4,7 @@ import csv
 from typing import List,Dict,Tuple
 from auditor import ArchivoInfo, escanear_archivos
 from collections import defaultdict
+from formatear_tamano import formatear_bytes
 
 def leer_argumentos() -> argparse.Namespace:
 
@@ -31,6 +32,11 @@ def leer_argumentos() -> argparse.Namespace:
         default=10, 
         help="Número máximo de archivos a mostrar en la consola (por defecto: 10)")
     
+    parser.add_argument(
+        "--human",
+        action="store_true",
+        help="Muestra el tamaño de los archivos en formato legible (KB, MB, GB, etc.)")
+    
     return parser.parse_args()
 
                        
@@ -46,10 +52,10 @@ def exportar_a_csv(archivos: list[ArchivoInfo], ruta_salida: str = "output/repor
 
     with ruta.open("w", newline="", encoding="utf-8") as file: ## Abre el archivo CSV para escritura
         writer=csv.writer(file)
-        writer.writerow(["Nombre", "Extensión", "Tamaño (bytes)", "Ruta"]) ## Escribe la fila de encabezado
+        writer.writerow(["Nombre", "Extensión", "Tamaño ", "Ruta"]) ## Escribe la fila de encabezado
 
         for a in archivos: ## Escribe cada objeto ArchivoInfo como una fila en el CSV
-            writer.writerow([a.nombre, a.extension, a.tamano_bytes, a.ruta])
+            writer.writerow([a.nombre, a.extension, formatear_bytes(a.tamano_bytes), a.ruta])
 
  
 def main() -> None:
@@ -63,8 +69,11 @@ def main() -> None:
 
     print(f"\n--- MOSTRANDO {min(args.limite, len(archivos))} ---")
     print(f"Archivos encontrados: {len(archivos)}")
+
     for a in archivos[:args.limite]: ## Muestra en la consola los primeros archivos encontrados, limitados por el argumento --limite
-        print(f"- {a.nombre} | {a.extension} | {a.tamano_bytes} bytes") ## Tomamos en cuenta que a es un objeto ArchivoInfo 
+    
+        tam=formatear_bytes(a.tamano_bytes) if args.human else f"{a.tamano_bytes} bytes"  ## Si se especificó --human, cambiar  unidad, de lo contrario muestra el tamaño en bytes
+        print(f"- {a.nombre} | {a.extension} | {tam}") ## Tomamos en cuenta que a es un objeto ArchivoInfo 
         # y por eso accedemos a sus atributos nombre, extension y tamano_bytes
 
     if not args.no_csv: ## Si no se especificó la opción --no-csv, exporta el reporte a CSV
@@ -92,7 +101,12 @@ def main() -> None:
     
     for ext,(cantidad, total_bytes) in sorted(resumen.items(),key=lambda x: x[1][1],reverse=True):
          ## Ordena el resumen por tamaño total en bytes de forma descendente
-         print(f"{ext}: {cantidad} archivos, {total_bytes} bytes")  # Imprime el resumen para cada extensión
+         
+            if args.human:  # Si se especificó la opción --human, formatea el tamaño total a un formato legible
+                unidad_B=formatear_bytes(total_bytes)  # llamo a la función formatear_bytes para convertir el tamaño total a un formato legible
+                print(f"{ext}: {cantidad} archivos, {unidad_B}")  
+            else:
+                print(f"{ext}: {cantidad} archivos, {total_bytes} bytes") 
 
     
 
