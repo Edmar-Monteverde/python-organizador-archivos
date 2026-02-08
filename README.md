@@ -25,7 +25,7 @@ El proyecto está diseñado como una utilidad por línea de comandos (CLI), modu
 ---
 
 ## 📁 Estructura del proyecto
-
+```text
 python-organizador-archivos/
 │
 ├── src/
@@ -40,7 +40,7 @@ python-organizador-archivos/
 │
 ├── .gitignore
 └── README.md
-
+```
 
 ---
 ### ▶️ Uso
@@ -159,6 +159,7 @@ Este proyecto me permitió practicar y consolidar:
 Edmar Monteverde
 Desarrollador en formación – Python / Backend
 📌 Proyecto desarrollado como parte de mi proceso de aprendizaje.
+
 
 
 
