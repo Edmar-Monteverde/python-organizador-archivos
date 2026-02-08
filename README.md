@@ -22,6 +22,8 @@ El proyecto está diseñado como una utilidad por línea de comandos (CLI), modu
 
 - 🧱 Código modular y organizado por responsabilidades
 
+---
+
 ## 📁 Estructura del proyecto
 
 python-organizador-archivos/
@@ -39,8 +41,6 @@ python-organizador-archivos/
 ├── .gitignore
 └── README.md
 
-
-▶️ Uso
 
 ---
 ### ▶️ Uso
@@ -79,7 +79,7 @@ Desde la raíz del proyecto, ejecuta:
 📌 python src/main.py --no-csv
 
 ```
-
+---
 ## ⚙️ Argumentos disponibles
 
 | Argumento  | Descripción                                  |
@@ -90,7 +90,7 @@ Desde la raíz del proyecto, ejecuta:
 | `--no-csv` | No genera el archivo CSV                     |
 | `--human`  | Muestra tamaños en KB / MB / GB              |
 
-
+---
 ## 🧠 Aprendizajes clave
 
 Este proyecto me permitió practicar y consolidar:
@@ -111,7 +111,7 @@ Este proyecto me permitió practicar y consolidar:
 
 - Uso práctico de Git durante el desarrollo
 
-
+---
 ## 🛠️ Tecnologías usadas
 
 - Python 3
@@ -126,7 +126,7 @@ Este proyecto me permitió practicar y consolidar:
 
 - Git & GitHub
 
- 
+ ---
 ## 🎯 Objetivo del proyecto
 
 - Proyecto creado con fines de aprendizaje y portafolio, enfocado en:
@@ -139,7 +139,7 @@ Este proyecto me permitió practicar y consolidar:
 
 - Construcción de herramientas útiles por CLI
 
-
+---
 ## 📌 Posibles mejoras futuras
 
 - Escaneo recursivo de subcarpetas (--recursive)
@@ -159,6 +159,7 @@ Este proyecto me permitió practicar y consolidar:
 Edmar Monteverde
 Desarrollador en formación – Python / Backend
 📌 Proyecto desarrollado como parte de mi proceso de aprendizaje.
+
 
 
 
