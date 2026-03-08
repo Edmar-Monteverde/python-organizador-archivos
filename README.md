@@ -1,6 +1,6 @@
 ## 📁 Python – Organizador y Auditor de Archivos
 
-Herramienta en Python para procesar gastos desde CSV..
+Herramienta en Python para analizar carpetas, listar archivos, agruparlos por extensión, calcular tamaños y exportar reportes en CSV..
 
 
 ## 🚀 Funcionalidades
@@ -158,6 +158,7 @@ Este proyecto me permitió practicar y consolidar:
 Edmar Monteverde
 Desarrollador en formación – Python / Backend
 📌 Proyecto desarrollado como parte de mi proceso de aprendizaje.
+
 
 
 
